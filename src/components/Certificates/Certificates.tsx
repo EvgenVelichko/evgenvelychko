@@ -50,16 +50,16 @@ export const Certificates: React.FC = () => {
 
     const certificates = [
         {
-            title: 'Websites for schoolchildren',
-            issuer: 'Ithillel',
-            date: '30.12.2024',
-            image: new URL('../../assets/certificates/Certificates.webp', import.meta.url).href,
-        },
-        {
             title: 'Nothing',
             issuer: 'Nothing',
             date: 'Nothing',
-            image: '',
+            image: new URL('', import.meta.url).href,
+        },
+        {
+            title: 'Websites for schoolchildren',
+            issuer: 'Ithillel',
+            date: '0.12.2024',
+            image: new URL('../../assets/certificates/Certificates.webp', import.meta.url).href,
         },
         {
             title: 'Nothing',
