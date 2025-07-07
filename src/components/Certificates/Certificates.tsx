@@ -63,7 +63,7 @@ export const Certificates: React.FC = () => {
             issuer: 'Ithillel',
             date: '26.06.2025',
             image: new URL(
-                '../../assets/certificates/Certificates2.webp',
+                '../../assets/certificates/Certificates2.png',
                 import.meta.url,
             ).href,
         },
