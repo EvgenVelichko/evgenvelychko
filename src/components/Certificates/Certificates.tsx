@@ -50,16 +50,22 @@ export const Certificates: React.FC = () => {
 
     const certificates = [
         {
-            title: 'Nothing',
-            issuer: 'Nothing',
-            date: 'Nothing',
-            image: new URL('', import.meta.url).href,
-        },
-        {
             title: 'Websites for schoolchildren',
             issuer: 'Ithillel',
-            date: '0.12.2024',
-            image: new URL('../../assets/certificates/Certificates.webp', import.meta.url).href,
+            date: '16.01.2025',
+            image: new URL(
+                '../../assets/certificates/Certificates.webp',
+                import.meta.url,
+            ).href,
+        },
+        {
+            title: 'Web-development for schoolchildren',
+            issuer: 'Ithillel',
+            date: '26.06.2025',
+            image: new URL(
+                '../../assets/certificates/Certificates2.webp',
+                import.meta.url,
+            ).href,
         },
         {
             title: 'Nothing',
@@ -69,7 +75,7 @@ export const Certificates: React.FC = () => {
         },
         {
             title: 'Nothing',
-            issuer: 'Nothing ',
+            issuer: 'Nothing',
             date: 'Nothing',
             image: '',
         },
@@ -163,7 +169,6 @@ export const Certificates: React.FC = () => {
                         </div>
                     </div>
 
-                 
                     <button
                         onClick={prevSlide}
                         disabled={currentIndex === 0}
