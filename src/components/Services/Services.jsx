@@ -3,7 +3,7 @@ import { Globe, Code, Server } from 'lucide-react';
 
 const ServiceCard = ({ title, description, icon }) => {
   return (
-    <div className="bg-gray-800 rounded-lg p-8 shadow-lg hover:transform hover:-translate-y-2 transition-all duration-300 border border-gray-700 hover:border-amber-500 group">
+    <div className="bg-gray-800 rounded-lg p-8 shadow-lg hover:transform hover:-translate-y-2 transition-all duration-300 border border-gray-700 hover:border-amber-500 group select-none">
       <div className="text-amber-500 mb-4 group-hover:scale-110 transition-transform duration-300">
         {icon}
       </div>
@@ -33,7 +33,11 @@ export const Services = () => {
   ];
 
   return (
-    <section id="services" className="py-20 bg-gray-900">
+    <section
+      id="services"
+      className="py-20 bg-gray-900 select-none"
+      onContextMenu={(e) => e.preventDefault()}
+    >
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold">

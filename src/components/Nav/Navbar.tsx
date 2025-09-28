@@ -35,7 +35,7 @@ export const Navbar: React.FC = () => {
       <div className="container mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
           <a href="#hero" className="flex items-center text-amber-500 font-bold text-xl">
-            <Code className="mr-2" /> DEV<span className="text-white">PORTFOLIO</span>
+            <Code className="mr-2" /> EVGEN<span className="text-white">PORTFOLIO</span>
           </a>
 
           {/* Desktop Navigation */}
