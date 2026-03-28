@@ -1,7 +1,7 @@
 /** @format */
 
-import React, { useState, useRef, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Award } from 'lucide-react';
+import React from 'react';
+import { Award, Sparkles } from 'lucide-react';
 
 interface CertificateProps {
     title: string;
@@ -18,25 +18,61 @@ const Certificate: React.FC<CertificateProps> = ({
 }) => {
     return (
         <div className="group">
-            <div className="bg-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:border-amber-500 transition-colors duration-300">
+            <div
+                className="rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-1"
+                style={{
+                    background: 'rgba(255,255,255,0.015)',
+                    border: '1px solid rgba(255,255,255,0.06)',
+                }}
+                onMouseEnter={e => {
+                    e.currentTarget.style.borderColor = 'rgba(99,102,241,0.3)';
+                    e.currentTarget.style.background = 'rgba(99,102,241,0.03)';
+                }}
+                onMouseLeave={e => {
+                    e.currentTarget.style.borderColor =
+                        'rgba(255,255,255,0.06)';
+                    e.currentTarget.style.background =
+                        'rgba(255,255,255,0.015)';
+                }}>
                 <div className="relative">
-                    <img
-                        src={image}
-                        alt={title}
-                        className="w-full h-48 object-cover"
-                    />
-                    <div className="absolute top-3 right-3 bg-amber-500 text-gray-900 p-2 rounded-full">
-                        <Award size={16} />
+                    {image ? (
+                        <img
+                            src={image}
+                            alt={title}
+                            className="w-full h-48 object-cover transition-transform duration-700 group-hover:scale-105"
+                        />
+                    ) : (
+                        <div
+                            className="w-full h-48 flex items-center justify-center"
+                            style={{ background: '#0a0f1f' }}>
+                            <Award size={48} style={{ color: '#334155' }} />
+                        </div>
+                    )}
+                    <div
+                        className="absolute inset-0"
+                        style={{
+                            background:
+                                'linear-gradient(180deg, transparent 50%, rgba(2,6,23,0.6) 100%)',
+                        }}></div>
+                    <div
+                        className="absolute top-3 right-3 p-2 rounded-full"
+                        style={{
+                            background:
+                                'linear-gradient(135deg, #6366f1, #a855f7)',
+                        }}>
+                        <Award size={12} className="text-white" />
                     </div>
                 </div>
-                <div className="p-6">
-                    <h3 className="text-lg font-semibold mb-2 group-hover:text-amber-500 transition-colors duration-300">
+                <div className="p-5">
+                    <h3 className="text-base font-semibold mb-2 text-white/90 group-hover:text-white transition-colors duration-300">
                         {title}
                     </h3>
-                    <p className="text-gray-400 text-sm mb-1">
+                    <p className="text-sm mb-1" style={{ color: '#64748b' }}>
                         Issued by: {issuer}
                     </p>
-                    <p className="text-gray-500 text-sm">{date}</p>
+                    <p className="text-xs" style={{ color: '#475569' }}>
+                        {date}
+                    </p>
                 </div>
             </div>
         </div>
@@ -44,10 +80,6 @@ const Certificate: React.FC<CertificateProps> = ({
 };
 
 export const Certificates: React.FC = () => {
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const [visibleCertificates, setVisibleCertificates] = useState(3);
-    const sliderRef = useRef<HTMLDivElement>(null);
-
     const certificates = [
         {
             title: 'Websites for schoolchildren',
@@ -67,128 +99,44 @@ export const Certificates: React.FC = () => {
                 import.meta.url,
             ).href,
         },
-        {
-            title: 'Nothing',
-            issuer: 'Nothing',
-            date: 'Nothing',
-            image: '',
-        },
-        {
-            title: 'Nothing',
-            issuer: 'Nothing',
-            date: 'Nothing',
-            image: '',
-        },
-        {
-            title: 'Nothing',
-            issuer: 'Nothing',
-            date: 'Nothing',
-            image: '',
-        },
     ];
 
-    useEffect(() => {
-        const handleResize = () => {
-            if (window.innerWidth >= 1280) {
-                setVisibleCertificates(3);
-            } else if (window.innerWidth >= 768) {
-                setVisibleCertificates(2);
-            } else {
-                setVisibleCertificates(1);
-            }
-        };
-
-        handleResize();
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
-
-    const maxIndex = certificates.length - visibleCertificates;
-
-    const nextSlide = () => {
-        setCurrentIndex(prev => Math.min(prev + 1, maxIndex));
-    };
-
-    const prevSlide = () => {
-        setCurrentIndex(prev => Math.max(prev - 1, 0));
-    };
-
-    useEffect(() => {
-        if (sliderRef.current) {
-            sliderRef.current.style.transform = `translateX(-${
-                currentIndex * (100 / visibleCertificates)
-            }%)`;
-        }
-    }, [currentIndex, visibleCertificates]);
-
     return (
-        <section id="certificates" className="py-20 bg-gray-900">
-            <div className="container mx-auto px-4">
-                <div className="text-center mb-16">
-                    <h2 className="text-4xl font-bold">
-                        MY <span className="text-amber-500">CERTIFICATES</span>
+        <section
+            id="certificates"
+            className="py-28 relative overflow-hidden"
+            style={{
+                background:
+                    'linear-gradient(180deg, #020617 0%, #070b16 50%, #020617 100%)',
+            }}>
+            {/* Decorative background */}
+            <div className="absolute inset-0 pointer-events-none">
+                <div
+                    className="absolute top-1/4 right-0 w-[400px] h-[400px] rounded-full blur-[140px]"
+                    style={{ background: 'rgba(99,102,241,0.04)' }}></div>
+                <div
+                    className="absolute bottom-1/4 left-0 w-[350px] h-[350px] rounded-full blur-[130px]"
+                    style={{ background: 'rgba(168,85,247,0.03)' }}></div>
+            </div>
+
+            <div className="container mx-auto px-6 relative z-10">
+                {/* Section Header */}
+                <div className="text-center mb-20">
+                    <h2 className="text-4xl md:text-5xl font-bold text-white">
+                        Certificates
                     </h2>
-                    <div className="h-1 w-24 bg-amber-500 mx-auto mt-4"></div>
-                    <p className="text-gray-300 mt-6 max-w-2xl mx-auto">
-                        I'm committed to continuous learning and professional
-                        development. Here are some of the certificates I've
-                        earned throughout my career.
-                    </p>
+                    <div
+                        className="mt-4 mx-auto w-12 h-1 rounded-full"
+                        style={{
+                            background:
+                                'linear-gradient(90deg, #6366f1, #a855f7)',
+                        }}></div>
                 </div>
 
-                <div className="relative max-w-6xl mx-auto">
-                    <div className="overflow-hidden">
-                        <div
-                            ref={sliderRef}
-                            className="flex transition-transform duration-500 ease-in-out"
-                            style={{
-                                width: `${
-                                    (certificates.length /
-                                        visibleCertificates) *
-                                    100
-                                }%`,
-                            }}>
-                            {certificates.map((certificate, index) => (
-                                <div
-                                    key={index}
-                                    style={{
-                                        width: `${
-                                            (100 / certificates.length) *
-                                            visibleCertificates
-                                        }%`,
-                                    }}
-                                    className="px-3">
-                                    <Certificate
-                                        title={certificate.title}
-                                        issuer={certificate.issuer}
-                                        date={certificate.date}
-                                        image={certificate.image}
-                                    />
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-
-                    <button
-                        onClick={prevSlide}
-                        disabled={currentIndex === 0}
-                        className={`absolute top-1/2 left-4 -translate-y-1/2 bg-amber-500 text-gray-900 p-3 rounded-full z-10 hover:bg-amber-600 transition-colors duration-300 ${
-                            currentIndex === 0
-                                ? 'opacity-50 cursor-not-allowed'
-                                : ''
-                        }`}>
-                        <ChevronLeft size={20} />
-                    </button>
-                    <button
-                        onClick={nextSlide}
-                        disabled={currentIndex >= maxIndex}
-                        className={`absolute top-1/2 right-4 -translate-y-1/2 bg-amber-500 text-gray-900 p-3 rounded-full z-10 hover:bg-amber-600 transition-colors duration-300 ${
-                            currentIndex >= maxIndex
-                                ? 'opacity-50 cursor-not-allowed'
-                                : ''
-                        }`}>
-                        <ChevronRight size={20} />
-                    </button>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+                    {certificates.map((cert, index) => (
+                        <Certificate key={index} {...cert} />
+                    ))}
                 </div>
             </div>
         </section>

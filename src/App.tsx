@@ -13,7 +13,7 @@ import { Footer } from './components/Footer/Footer';
 function App() {
   return (
     <LanguageProvider>
-      <div className="min-h-screen bg-gray-900 text-white">
+      <div className="min-h-screen text-white" style={{ background: '#020617' }}>
         <Navbar />
         <Hero />
         <About />
