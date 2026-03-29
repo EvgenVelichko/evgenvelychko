@@ -123,7 +123,7 @@ const projects: ProjectProps[] = [
     {
         title: 'Gallery',
         description: 'Elegant image gallery with smooth animations.',
-        image: 'https://opengraph.githubassets.com/1/EvgenVelichko/Gallery',
+      image: new URL('../../assets/project/gallery.png', import.meta.url).href,
         tags: ['HTML', 'CSS', 'JavaScript'],
         liveLink: 'https://evgenvelichko.github.io/Gallery/',
         githubLink: 'https://github.com/EvgenVelichko/Gallery',
